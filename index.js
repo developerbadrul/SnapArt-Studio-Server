@@ -31,12 +31,18 @@ async function run() {
 
     // create new shop 
     app.post("/add-new-shop", async(req, res)=>{
-        const operatorCollDB = client.db("operatorManager").collection("shopList");
+        const shopList = client.db("operatorManager").collection("shopList");
         const newShop = req.body;
-        const result = await operatorCollDB.insertOne(newShop)
+        const result = await shopList.insertOne(newShop)
         res.send(result)
     })
 
+    // get all services 
+    app.get("/services", async(req, res)=>{
+      const allServices = client.db("operatorManager").collection("allServices");
+      const result = await allServices.find().toArray()
+      res.send(result)
+    })
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
