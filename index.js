@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config()
 const app = express();
 const port = process.env.PORT || 5000;
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 // middleware
 app.use(cors())
@@ -43,6 +43,18 @@ async function run() {
       const result = await allServices.find().toArray()
       res.send(result)
     })
+     
+    // get single service 
+    app.get("/services/:id", async(req, res)=>{
+      const id = req.params.id;
+      const allServices = client.db("operatorManager").collection("allServices")
+      const query = {
+        _id : new ObjectId(id)
+      }
+      const result = await allServices.findOne(query);
+      res.send(result)
+    })
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
@@ -56,12 +68,6 @@ run().catch(console.dir);
 try {
     app.get("/", (req, res)=>{
         res.send("Server Running")
-    })
-    
-    app.post("/add-new-shop", async(req, res)=>{
-        const newShop = req.body;
-        console.log(newShop);
-        res.send(newShop)
     })
 
     app.listen(port, ()=>{
