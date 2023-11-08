@@ -43,7 +43,15 @@ async function run() {
       const result = await allServices.find().toArray()
       res.send(result)
     })
-     
+    
+    // Create A Service 
+    app.post("/services", async(req, res)=>{
+      const allServices = client.db("operatorManager").collection("allServices");
+      const addNewService = req.body;
+      const result = await allServices.insertOne(addNewService)
+      res.send(result)
+    })
+
     // get single service 
     app.get("/services/:id", async(req, res)=>{
       const id = req.params.id;
@@ -54,6 +62,8 @@ async function run() {
       const result = await allServices.findOne(query);
       res.send(result)
     })
+
+
 
     // create new Order 
 
