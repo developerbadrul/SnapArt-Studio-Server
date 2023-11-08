@@ -55,6 +55,14 @@ async function run() {
       res.send(result)
     })
 
+    // create new Order 
+
+    app.post("/orders", async(req, res)=>{
+      const newOrder = req.body;
+      console.log(newOrder);
+      res.send(newOrder)
+    })
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
