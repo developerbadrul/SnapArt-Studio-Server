@@ -58,9 +58,25 @@ async function run() {
     // create new Order 
 
     app.post("/orders", async(req, res)=>{
+      const orderCollection = client.db("operatorManager").collection("orders")
       const newOrder = req.body;
-      console.log(newOrder);
-      res.send(newOrder)
+      const result = await orderCollection.insertOne(newOrder);
+      // console.log(newOrder);
+      res.send(result)
+    })
+
+    // get order by email address 
+
+    app.get("/orders/:clientEmail", async(req, res)=>{
+      const orderCollection = client.db("operatorManager").collection("orders");
+      const clientEmail = req.params.clientEmail;
+      const query ={
+        ClientEmail: clientEmail
+      }
+
+      const result = await orderCollection.find(query).toArray()
+      res.send(result)
+
     })
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
