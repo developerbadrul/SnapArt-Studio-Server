@@ -52,6 +52,8 @@ async function run() {
       res.send(result)
     })
 
+    
+
     // get single service 
     app.get("/services/:id", async(req, res)=>{
       const id = req.params.id;
@@ -74,6 +76,9 @@ async function run() {
       // console.log(newOrder);
       res.send(result)
     })
+
+    // delete order 
+    
 
     // get order by email address 
 
