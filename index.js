@@ -30,12 +30,12 @@ async function run() {
     // await client.db("admin").command({ ping: 1 });
 
     // create new shop 
-    app.post("/add-new-shop", async(req, res)=>{
-        const shopList = client.db("operatorManager").collection("shopList");
-        const newShop = req.body;
-        const result = await shopList.insertOne(newShop)
-        res.send(result)
-    })
+    // app.post("/add-new-shop", async(req, res)=>{
+    //     const shopList = client.db("operatorManager").collection("shopList");
+    //     const newShop = req.body;
+    //     const result = await shopList.insertOne(newShop)
+    //     res.send(result)
+    // })
 
     // get all services 
     app.get("/services", async(req, res)=>{
@@ -76,6 +76,7 @@ async function run() {
     })
 
     // get order by email address 
+
 
     app.get("/orders/:clientEmail", async(req, res)=>{
       const orderCollection = client.db("operatorManager").collection("orders");
