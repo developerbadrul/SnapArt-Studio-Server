@@ -2,6 +2,8 @@
 
 Welcome to SnapArt Studio's server-side application repository. SnapArt Studio is a creative platform that brings art to life with stunning 3D logos and designs. Our server-side application provides the backend infrastructure for the platform. Explore the key features and technologies used in this project:
 
+<img src="https://i.ibb.co/hdGWxWw/Screenshot-8.png"/>
+
 ## Key Features:
 
 1. **Database Interaction:** The server-side application is responsible for managing interactions with the MongoDB database. It handles creating, updating, and retrieving data related to services, orders, and more.
